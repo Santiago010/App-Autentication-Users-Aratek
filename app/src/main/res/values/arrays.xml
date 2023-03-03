@@ -1,0 +1,13 @@
+<resources>
+
+    <string-array name="displayed_demo_entries">
+        <item>@string/fingerprint</item>
+        <item>@string/hardware_barcode</item>
+    </string-array>
+
+    <string-array name="displayed_demo_values" translatable="false">
+        <item>.FingerprintScannerDemo</item>
+        <item>.CodeScannerDemo</item>
+    </string-array>
+
+</resources>

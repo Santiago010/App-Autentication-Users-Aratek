@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="match_parent">-1px</dimen>
+    <dimen name="wrap_content">-2px</dimen>
+    <dimen name="main_grid_horizontal_spacing">20dp</dimen>
+    <dimen name="main_grid_vertical_spacing">30dp</dimen>
+    <dimen name="text_icon_margin">15dp</dimen>
+    <dimen name="text_icon_image_side_length">64dp</dimen>
+    <dimen name="text_icon_text_size">16sp</dimen>
+    <dimen name="information_text_size">22sp</dimen>
+    <dimen name="content_margin_left">30dp</dimen>
+    <dimen name="content_margin_right">30dp</dimen>
+    <dimen name="button_bar_button_width">100dp</dimen>
+    <dimen name="button_bar_button_height">60dp</dimen>
+    <dimen name="button_bar_margin_left">5dp</dimen>
+    <dimen name="button_bar_margin_right">5dp</dimen>
+    <dimen name="fingerprint_time_info_margin_left">10dp</dimen>
+    <dimen name="idcard_people_info_margin_left">10dp</dimen>
+</resources>

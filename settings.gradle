@@ -1,0 +1,2 @@
+rootProject.name='Aratek BMAPI Demo'
+include ':app'

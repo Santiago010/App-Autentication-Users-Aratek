@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_grid"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="25dp"
+    android:horizontalSpacing="@dimen/main_grid_horizontal_spacing"
+    android:numColumns="@integer/config_mainGridColumnCount"
+    android:stretchMode="columnWidth"
+    android:verticalSpacing="@dimen/main_grid_vertical_spacing"
+    tools:context=".MainActivity" />

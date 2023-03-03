@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.com.aratek.demo">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".LoginActivity"
+             >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ListActivity" android:exported="false"/>
+
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/settings" />
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/about" />
+        <activity
+            android:name=".FingerprintScannerDemo"
+            android:icon="@drawable/ic_fingerprint"
+            android:label="@string/fingerprint"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name=".CodeScannerDemo"
+            android:icon="@drawable/ic_barcode"
+            android:label="@string/hardware_barcode"
+            android:screenOrientation="nosensor" />
+    </application>
+
+</manifest>

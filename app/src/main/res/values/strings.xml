@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="app_name">BMAPI Demo</string>
+    <string name="permission_denied_info">All permissions need to be granted.</string>
+    <string name="import_configurations">Import configurations</string>
+    <string name="configuration_file_not_exist">The configuration file does not exist!</string>
+    <string name="configuration_file_load_failed">Cannot load configuration file!</string>
+    <string name="configuration_file_save_failed">Cannot save configuration file!</string>
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="about_info"><![CDATA[<h2><xliff:g>%1$s</xliff:g></h2><p/>App version: <xliff:g>%2$s</xliff:g><p/>SDK version: <xliff:g>%3$s</xliff:g><p/>]]></string>
+    <string name="loading">Loading</string>
+    <string name="preparing_device">Device is preparing, please wait…</string>
+    <string name="closing_device">Device is closing, please wait…</string>
+    <string name="firmware_version">Firmware Version: </string>
+    <string name="serial_number">Serial Number: </string>
+
+    <!-- Fingerprint Device -->
+    <string name="fingerprint">Fingerprint</string>
+    <string name="fp_collect_info">Time Information: </string>
+    <string name="capture">Capture Image: </string>
+    <string name="extract">Extract Feature: </string>
+    <string name="generalize">Make Template: </string>
+    <string name="verify">Authentication: </string>
+    <string name="enroll_fp">Enroll</string>
+    <string name="verify_fp">Verify</string>
+    <string name="identify_fp">Identify</string>
+    <string name="clear_fp_db">Clear Database</string>
+    <string name="show_fp">Show Image</string>
+    <string name="lfd_level">LFD level: </string>
+    <string-array name="lfd_levels">
+        <item>OFF</item>
+        <item>EXTRA LOW</item>
+        <item>LOW</item>
+        <item>MEDIUM</item>
+        <item>HIGH</item>
+        <item>ULTRA HIGH</item>
+    </string-array>
+    <string name="switching_lfd">Switching LFD mode...</string>
+    <string name="switch_lfd_success">Succeeded to switch LFD mode.</string>
+    <string name="switch_lfd_failed">Failed to switch LFD mode.</string>
+    <string name="press_finger">Please press finger on capture area.</string>
+    <string name="enrolling">Enrolling fingerprint to database…</string>
+    <string name="verifying">Verifying fingerprint…</string>
+    <string name="identifying">Identifying fingerprint…</string>
+    <string name="clearing">Clearing database…</string>
+    <string name="fingerprint_device_open_success">Succeeded to open fingerprint device!</string>
+    <string name="fingerprint_device_open_failed">Failed to open fingerprint device!</string>
+    <string name="fingerprint_device_close_success">Succeeded to close fingerprint device!</string>
+    <string name="fingerprint_device_close_failed">Failed to close fingerprint device!</string>
+    <string name="algorithm_initialization_failed">Algorithm initialization failed!</string>
+    <string name="not_done">Not applicable</string>
+    <string name="capture_image_success">Succeeded to capture fingerprint image!</string>
+    <string name="capture_image_failed">Failed to capture fingerprint image!</string>
+    <string name="fake_finger_detected">Fake finger is detected!</string>
+    <string name="enroll_failed_because_of_extract_feature">Feature extracting failure!</string>
+    <string name="enroll_failed_because_of_make_template">Enrollment failed because of template making failure!</string>
+    <string name="enroll_failed_because_of_get_id">Enrollment failed because fingerprint database is full!</string>
+    <string name="enroll_failed_because_of_error">Enrollment failed!</string>
+    <string name="enroll_success">Enrollment succeeded!</string>
+    <string name="enrolled_id">The enrolled fingerprint ID is <xliff:g>%1$d</xliff:g>.</string>
+    <string name="verify_failed_because_of_error">Verification failed!</string>
+    <string name="fingerprint_not_match">Fingerprint does not match!</string>
+    <string name="fingerprint_match">Fingerprint match!</string>
+    <string name="fingerprint_similarity">The similarity is <xliff:g>%1$d</xliff:g>.</string>
+    <string name="identify_failed_because_of_error">Identification failed!</string>
+    <string name="identify_match">Identification succeeded!</string>
+    <string name="matched_id">The matched fingerprint ID is <xliff:g>%1$d</xliff:g>.</string>
+    <string name="clear_fingerprint_database_success">Succeeded to clear fingerprint database!</string>
+    <string name="clear_fingerprint_database_failed">Failed to clear fingerprint database!</string>
+
+    <!-- Barcode Scanner -->
+    <string name="hardware_barcode">Barcode</string>
+    <string name="data_output">Data Output: </string>
+    <string name="scan_barcode">Scan Barcode</string>
+    <string name="align_barcode">Please align the scan window to the barcode.</string>
+    <string name="hardware_barcode_scanner_open_success">Succeeded to open barcode scanner!</string>
+    <string name="hardware_barcode_scanner_open_failed">Failed to open barcode scanner!</string>
+    <string name="hardware_barcode_scanner_close_success">Succeeded to close barcode scanner!</string>
+    <string name="hardware_barcode_scanner_close_failed">Failed to close barcode scanner!</string>
+    <string name="barcode_scan_success">Succeeded to scan barcode!</string>
+    <string name="barcode_scan_failed">Failed to scan barcode!</string>
+    <string name="unsupported_encoding">The barcode data could not be transferred to UTF-8 encoding!</string>
+
+    <!-- Error Code Strings -->
+    <string name="operation_successful">Operation is successful!</string>
+    <string name="error_operation_failed">Operation failed!</string>
+    <string name="error_wrong_connection">Operation failed because of wrong connection!</string>
+    <string name="error_device_busy">Operation failed because device is busy!</string>
+    <string name="error_device_not_open">Operation failed because device is not open!</string>
+    <string name="error_timeout">Operation failed because of timeout!</string>
+    <string name="error_no_permission">Operation failed because of no permission!</string>
+    <string name="error_wrong_parameter">Operation failed because of wrong parameter!</string>
+    <string name="error_decode">Operation failed because of decoding failure!</string>
+    <string name="error_initialization_failed">Operation failed because of initialization failure!</string>
+    <string name="error_unknown">Operation failed because of unknown error!</string>
+    <string name="error_not_support">Operation failed because it\'s not supported!</string>
+    <string name="error_not_enough_memory">Operation failed because of insufficient memory!</string>
+    <string name="error_device_not_found">Operation failed because device is not found!</string>
+    <string name="error_device_reopen">Operation failed because device is repeatedly turned on!</string>
+    <string name="error_algorithm_initialization_failed">Operation failed because of fingerprint algorithm initialization failure!</string>
+    <string name="error_invalid_feature_data">Operation failed because of invalid fingerprint feature data!</string>
+    <string name="error_bad_image">Operation failed because of unqualified fingerprint image!</string>
+    <string name="error_not_match">Operation failed because fingerprint dose not match!</string>
+    <string name="error_low_point">Operation failed because fingerprint verification score is too low!</string>
+    <string name="error_no_finger">Operation failed because of no fingers found!</string>
+    <string name="error_no_result">Operation failed because of no match fingerprint is found in database!</string>
+    <string name="error_out_of_bound">Operation failed because fingerprint ID is out of range!</string>
+    <string name="error_database_full">Operation failed because database is full!</string>
+    <string name="error_library_missing">Operation failed because fingerprint algorithm library is missing!</string>
+    <string name="error_algorithm_uninitialize">Operation failed because fingerprint algorithm is not initialized!</string>
+    <string name="error_algorithm_reinitialize">Operation failed because of fingerprint algorithm is initialized repeatedly!</string>
+    <string name="error_repeated_enroll">Operation failed because of fingerprint is enrolled repeatedly!</string>
+    <string name="error_not_enrolled">Operation failed because fingerprint is not enrolled!</string>
+    <string name="error_no_card">Operation failed because no card is found!</string>
+    <string name="error_invalid_card">Operation failed because card is not supported!</string>
+    <string name="error_invalid_decode_lib">Operation failed because decoding library is invalid!</string>
+    <string name="error_card_validate_failed">Operation failed because of encryption key authentication failure!</string>
+    <string name="error_card_not_activate">Operation failed because card is not activated!</string>
+    <string name="error_no_paper">Paper has been exhausted!</string>
+    <string name="error_other">Operation failed because of other errors! (Error: <xliff:g>%1$d</xliff:g>)</string>
+
+    <!-- Preference Titles -->
+    <string name="main_ui_header">Main UI</string>
+
+    <!-- Main UI Preferences -->
+    <string name="displayed_demo_title">Displayed demo program</string>
+
+</resources>
