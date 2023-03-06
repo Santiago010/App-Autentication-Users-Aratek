@@ -41,7 +41,7 @@ public class FingerprintAdapter extends RecyclerView.Adapter<FingerprintAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         User s = mData.get(position);
 
-        holder.textView.setText(s.getEmail());
+        holder.textView.setText(s.getName());
         holder.textView.setTag(s);
 
 

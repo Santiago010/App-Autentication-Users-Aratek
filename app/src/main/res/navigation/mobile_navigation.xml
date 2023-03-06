@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/empleadoFragment">
+
+
+    <fragment
+        android:id="@+id/empleadoFragment"
+        android:name="cn.com.aratek.demo.EmpleadoFragment"
+        android:label="fragment_empleado_list"
+        tools:layout="@layout/activity_list_item" />
+    <fragment
+        android:id="@+id/enrollFragment"
+        android:name="cn.com.aratek.demo.EnrollFragment"
+        android:label="fragment_enroll"
+        tools:layout="@layout/fragment_enroll" />
+</navigation>

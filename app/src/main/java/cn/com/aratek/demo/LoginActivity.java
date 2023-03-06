@@ -46,13 +46,12 @@ public class LoginActivity extends AppCompatActivity {
                 return;
             }else {
                 sendData(String.valueOf(username.getText()) ,String.valueOf(pass.getText()));
-                navigateTo();
             }
         });
     }
 
     private void navigateTo(){
-        Intent intent = new Intent(this, ListActivity.class);
+        Intent intent = new Intent(this, hamburgermenuActivity.class);
         startActivity(intent);
 
     }
@@ -81,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(response.isSuccessful()){
                         Newuser userRes = response.body();
                         Log.d("IDRES",String.valueOf(userRes.getId()));
+                        navigateTo();
                     }
                 }catch (Exception ex){
                     Log.d("APIER",ex.getMessage());

@@ -601,7 +601,7 @@ public class FingerprintScannerDemo extends AbstractBaseActivity implements View
                     //TODO: aca llamada al metodo verify el cual va hacer concidir la plantilla de huella que le estamos pasando con un id y nos devolvera en res el resultado de esto
                     //TODO: en tipo Result en donde res.data va ser true si se encuentra una concidencia y si no false
                     res = Bione.verify(mId, fpFeat);
-                    Log.d("mid",String.valueOf(mId));
+                    Log.d("mid",String.valueOf(res));
                     Log.d("VERIFY",fpFeat.toString());
 
 
