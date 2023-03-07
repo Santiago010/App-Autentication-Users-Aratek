@@ -12,8 +12,13 @@
         android:label="fragment_empleado_list"
         tools:layout="@layout/activity_list_item" />
     <fragment
-        android:id="@+id/enrollFragment"
-        android:name="cn.com.aratek.demo.EnrollFragment"
-        android:label="fragment_enroll"
-        tools:layout="@layout/fragment_enroll" />
+        android:id="@+id/enrollempleadoFragment"
+        android:name="cn.com.aratek.demo.EnrollempleadoFragment"
+        android:label="fragment_enrollempleado_list"
+        tools:layout="@layout/fragment_enrollempleado_list" />
+    <fragment
+        android:id="@+id/cambiarurlapi"
+        android:name="cn.com.aratek.demo.cambiarurlapi"
+        android:label="fragment_cambiarurlapi"
+        tools:layout="@layout/fragment_cambiarurlapi" />
 </navigation>

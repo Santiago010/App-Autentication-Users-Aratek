@@ -4,7 +4,8 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/enrollFragment" android:icon="@drawable/ic_menu_manage" android:title="@string/menu_enroll" />
+        <item android:id="@+id/enrollempleadoFragment" android:icon="@drawable/ic_menu_manage" android:title="@string/menu_enroll" />
+        <item android:id="@+id/cambiarurlapi" android:icon="@drawable/ic_menu_url" android:title="@string/menu_url" />
         <item android:id="@+id/empleadoFragment" android:icon="@drawable/ic_menu_list" android:title="@string/menu_list" />
     </group>
 </menu>

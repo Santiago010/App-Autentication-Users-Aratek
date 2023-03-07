@@ -31,9 +31,6 @@
             android:theme="@style/AppTheme.NoActionBar" android:exported="false" />
 
         <activity
-            android:name=".ListActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity

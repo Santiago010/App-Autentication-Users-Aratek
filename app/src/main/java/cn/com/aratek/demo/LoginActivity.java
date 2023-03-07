@@ -2,8 +2,10 @@ package cn.com.aratek.demo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +17,8 @@ import com.google.gson.GsonBuilder;
 import cn.com.aratek.demo.featuresrequest.DataForLogin;
 import cn.com.aratek.demo.featuresrequest.FingerprintService;
 import cn.com.aratek.demo.featuresrequest.Newuser;
-import cn.com.aratek.demo.featuresrequest.User;
+
+import cn.com.aratek.demo.utils.Prefs;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     private  EditText pass;
     private Button btnSend;
 
+    private Prefs prefs;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
         pass =  findViewById(R.id.pass);
         btnSend = findViewById(R.id.btnSend);
         addOnClickBtnSend();
+
+        prefs = new Prefs(this);
     }
 
     private void addOnClickBtnSend(){
@@ -63,7 +70,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private Retrofit makeConfRequest(){
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://api.escuelajs.co/api/v1/")
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(prefs.getUrl())
                 .addConverterFactory(makeConfGson()).build();
         return retrofit;
     }

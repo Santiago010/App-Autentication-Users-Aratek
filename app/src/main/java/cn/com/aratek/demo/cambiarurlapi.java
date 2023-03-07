@@ -1,19 +1,29 @@
 package cn.com.aratek.demo;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import cn.com.aratek.demo.utils.Prefs;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link EnrollFragment#newInstance} factory method to
+ * Use the {@link cambiarurlapi#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EnrollFragment extends Fragment {
+public class cambiarurlapi extends Fragment {
+
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +34,14 @@ public class EnrollFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public EnrollFragment() {
+    private EditText editURL;
+    private Button btnchangeURL;
+
+
+    private Prefs prefs;
+
+
+    public cambiarurlapi() {
         // Required empty public constructor
     }
 
@@ -34,11 +51,11 @@ public class EnrollFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment EnrollFragment.
+     * @return A new instance of fragment cambiarurlapi.
      */
     // TODO: Rename and change types and number of parameters
-    public static EnrollFragment newInstance(String param1, String param2) {
-        EnrollFragment fragment = new EnrollFragment();
+    public static cambiarurlapi newInstance(String param1, String param2) {
+        cambiarurlapi fragment = new cambiarurlapi();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -53,12 +70,48 @@ public class EnrollFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_cambiarurlapi, container, false);
+
+
+        editURL = view.findViewById(R.id.editURL);
+        btnchangeURL = view.findViewById(R.id.changeURL);
+
+
+
+
+
+        prefs = new Prefs(getContext());
+        initFeaturesUI();
+
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_enroll, container, false);
+        return view;
     }
+
+    public void initFeaturesUI(){
+        btnchangeURL.setOnClickListener(v -> {
+            if(editURL.length() == 0 ){
+
+                Toast.makeText(getContext(),"Te falta algun campo por llenar",Toast.LENGTH_SHORT).show();
+                return;
+            }else {
+                prefs.saveUrl(String.valueOf(editURL.getText()) );
+                Toast.makeText(getContext(),"URL cambiada EXITOSAMENTE",Toast.LENGTH_LONG);
+
+            }
+        });
+
+        editURL.setText(prefs.getUrl());
+    }
+
+
+
 }

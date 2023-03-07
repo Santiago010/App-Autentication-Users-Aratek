@@ -18,12 +18,15 @@ import cn.com.aratek.demo.databinding.ActivityHamburgermenuBinding;
 
 public class hamburgermenuActivity extends AppCompatActivity {
 
+
+
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityHamburgermenuBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         binding = ActivityHamburgermenuBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
