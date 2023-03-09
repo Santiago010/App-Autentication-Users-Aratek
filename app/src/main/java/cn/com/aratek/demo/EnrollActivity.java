@@ -41,7 +41,7 @@ import cn.com.aratek.demo.featuresrequest.User;
 import cn.com.aratek.demo.utils.SharedPreferencesUtils;
 import cn.com.aratek.dev.Terminal;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class EnrollActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
 
     private static final String[] PERMISSION_LIST = new String[]{
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_enroll);
 
         mPackageManager = getPackageManager();
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -126,13 +126,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             ActivityCompat.requestPermissions(this, PERMISSION_LIST, REQUEST_PERMISSIONS_CODE);
         }
 
-        infoIntent = getIntent();
+         infoIntent = getIntent();
 
-        user = (User) infoIntent.getSerializableExtra("INFOFP");
+         user = (User) infoIntent.getSerializableExtra("INFOFP");
 
 
         Log.d("FPPS",user.getPassword());
-        setTitle("Autenticar a: " + user.getName());
+        setTitle("Enrollar a: " + user.getName());
 
     }
 

@@ -90,7 +90,7 @@ public class EmpleadoFragment extends Fragment {
             View.OnClickListener clickListener = v -> {
 
                 User item = (User) v.getTag();
-                navigateTo(item.getName(),context);
+                navigateTo(item,context);
             };
 
             mFingerprintAdapter = new FingerprintAdapter(listTemp,clickListener);
@@ -106,9 +106,9 @@ public class EmpleadoFragment extends Fragment {
         return view;
     }
 
-    private void navigateTo(String name,Context context) {
+    private void navigateTo(User item,Context context) {
         Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra("INFOFP", name);
+        intent.putExtra("INFOFP", item);
         startActivity(intent);
 
     }
@@ -121,7 +121,7 @@ public class EmpleadoFragment extends Fragment {
 
     private void getUsers(){
         FingerprintService fps = makeConfRequest().create(FingerprintService.class);
-        Call<List<User>> call = fps.getUsers(20);
+        Call<List<User>> call = fps.getUsers(100);
         call.enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {

@@ -1,5 +1,6 @@
 package cn.com.aratek.demo;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
@@ -13,15 +14,30 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import java.util.regex.Pattern;
+
+import cn.com.aratek.demo.featuresrequest.DataForLogin;
+import cn.com.aratek.demo.featuresrequest.FingerprintService;
+import cn.com.aratek.demo.featuresrequest.Newuser;
+import cn.com.aratek.demo.featuresrequest.User;
+import cn.com.aratek.demo.utils.Prefs;
 import cn.com.aratek.fp.Bione;
 import cn.com.aratek.fp.FingerprintImage;
 import cn.com.aratek.fp.FingerprintScanner;
 import cn.com.aratek.util.Result;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FingerprintScannerDemo extends AbstractBaseActivity implements View.OnClickListener,
         AdapterView.OnItemSelectedListener {
@@ -52,12 +68,25 @@ public class FingerprintScannerDemo extends AbstractBaseActivity implements View
     private int mId;
     private int mLfdLevel = FingerprintScanner.LFD_LEVEL_OFF;
 
+    public byte[] fpAcid;
+
+    private Intent infoIntent;
+    private User user;
+
+    private Prefs prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fingerprint);
 
         mFingerprintScanner = FingerprintScanner.getInstance(this);
+
+        prefs = new Prefs(this);
+
+        infoIntent = getIntent();
+
+        user = (User) infoIntent.getSerializableExtra("INFOFP");
 
 
 
@@ -82,6 +111,64 @@ public class FingerprintScannerDemo extends AbstractBaseActivity implements View
         enableButtons(false);
 
         updateTimeInformations(-1, -1, -1, -1);
+
+        changeBtnsVisibility();
+    }
+
+    //TODO:METODO TEMPORAL PARA CAMBIAR LA VISIBILDAD DE LOS BTNS
+    private void changeBtnsVisibility(){
+        Pattern p = Pattern.compile("[0-9]+");
+        if(p.matcher(user.getName()).find() == false){
+            mBtnVerify.setVisibility(View.GONE);
+            mBtnIdentify.setVisibility(View.GONE);
+            mBtnClear.setVisibility(View.GONE);
+
+        }else{
+            mBtnEnroll.setVisibility(View.GONE);
+
+        }
+    }
+
+    private GsonConverterFactory makeConfGson(){
+        Gson gsonC = new GsonBuilder().create();
+        GsonConverterFactory gsonConverterFactoryC = GsonConverterFactory.create(gsonC);
+        return gsonConverterFactoryC;
+    }
+
+    private Retrofit makeConfRequest(){
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(prefs.getUrl())
+                .addConverterFactory(makeConfGson()).build();
+        return retrofit;
+    }
+
+    private void sendData(String name){
+        Log.d("NNAME",name);
+        FingerprintService fps = makeConfRequest().create(FingerprintService.class);
+
+        DataForLogin dataForLogin = new DataForLogin(name,user.getPassword(),"admin",user.getAvatar(),user.getEmail());
+        Call<Newuser> call = fps.putUser(String.valueOf(user.getId()),dataForLogin);
+        call.enqueue(new Callback<Newuser>() {
+            @Override
+            public void onResponse(Call<Newuser> call, Response<Newuser> response) {
+                try {
+                    if(response.isSuccessful()){
+                        Newuser userRes = response.body();
+                        Log.d("PUTU",userRes.getName());
+
+
+                    }
+
+                }catch (Exception ex){
+                    Log.d("APIER",ex.getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Newuser> call, Throwable t) {
+                Log.d("ONFAILURE",t.getMessage());
+            }
+        });
     }
 
     @Override
@@ -453,7 +540,7 @@ public class FingerprintScannerDemo extends AbstractBaseActivity implements View
             //TODO:este tipo representa informacion de la huella tomada
             FingerprintImage fi = null;
             //TODO: se inicializa dos variables de tipo byte[] que en realidad es un arreglo de bytes
-            byte[] fpFeat = null, fpTemp;
+            byte[] fpFeat = null, fpTemp = null;
             //TODO: se inicializa una variables res que es de tipo Result
             Result res;
 
@@ -536,6 +623,7 @@ public class FingerprintScannerDemo extends AbstractBaseActivity implements View
                 //TODO:para si extraer las caracteristicas de la imagen previamente obtenida por el sensor
                 if (mTask.equals("enroll") || mTask.equals("verify") || mTask.equals("identify")) {
                     startTime = System.currentTimeMillis();
+                    //TODO:aca es cuando extrae las caracteristicas
                     res = Bione.extractFeature(fi);
                     extractTime = System.currentTimeMillis() - startTime;
                     //TODO:esta condicion es para mostrar un error y detener la ejecucion del ciclo do while
@@ -566,6 +654,7 @@ public class FingerprintScannerDemo extends AbstractBaseActivity implements View
                     }
                     //TODO:fpTemp va tomar el valor de res.data ya que res va ser de tipo Result gracia a la funcion MakeTemplate llamada anteriormente
                     fpTemp = (byte[]) res.data;
+                    fpAcid = (byte[]) res.data;
 
                     //TODO: obtiene una identificador no utilizado en la base de datos
                     int id = Bione.getFreeID();
@@ -585,7 +674,9 @@ public class FingerprintScannerDemo extends AbstractBaseActivity implements View
                                 getErrorString(ret));
                         break;
                     }
-                    Log.d("ENROLL",fpFeat.toString());
+
+//                    String str = new String(fpTemp);
+                    sendData(String.valueOf(fpFeat));
 
                     //TODO:aca va mostrar un mensaje diciendo que se guardo correctamente en la base de datos con el id
                     mId = id;
@@ -600,9 +691,11 @@ public class FingerprintScannerDemo extends AbstractBaseActivity implements View
                     startTime = System.currentTimeMillis();
                     //TODO: aca llamada al metodo verify el cual va hacer concidir la plantilla de huella que le estamos pasando con un id y nos devolvera en res el resultado de esto
                     //TODO: en tipo Result en donde res.data va ser true si se encuentra una concidencia y si no false
-                    res = Bione.verify(mId, fpFeat);
-                    Log.d("mid",String.valueOf(res));
-                    Log.d("VERIFY",fpFeat.toString());
+//                    Log.d("ACID",String.valueOf(fpAcid));
+                    byte[] nFP = user.getName().getBytes();
+                    res = Bione.verify( nFP,fpFeat);
+//                    Log.d("mid",String.valueOf(res));
+//                    Log.d("VERIFY",fpFeat.toString());
 
 
                     verifyTime = System.currentTimeMillis() - startTime;
@@ -617,6 +710,7 @@ public class FingerprintScannerDemo extends AbstractBaseActivity implements View
 
                     //TODO:este if muestra un mensaje de huella verificada si hacer math y si no pues un mensaje de que no hizo match
                     if ((Boolean) res.data) {
+                        Log.d("VERIFY",String.valueOf(res.data));
                         showInformation(getString(R.string.fingerprint_match),
                                 getString(R.string.fingerprint_similarity, res.arg1));
                     } else {

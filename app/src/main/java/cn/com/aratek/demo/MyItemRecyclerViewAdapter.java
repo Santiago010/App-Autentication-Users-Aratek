@@ -35,7 +35,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     public void onBindViewHolder(final ViewHolder holder, int position) {
         User s = mValues.get(position);
         holder.mItem = s;
-//        holder.mIdView.setText(s.getId());
+        holder.mIdView.setText(String.valueOf(s.getId()));
         holder.mContentView.setText(s.getEmail());
         holder.itemView.setTag(s);
         holder.itemView.setOnClickListener(clickListenerFP);

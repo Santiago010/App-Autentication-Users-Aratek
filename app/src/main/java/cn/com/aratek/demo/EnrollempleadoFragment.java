@@ -1,6 +1,7 @@
 package cn.com.aratek.demo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -84,6 +85,7 @@ public class EnrollempleadoFragment extends Fragment {
 
             View.OnClickListener clickListener = v -> {
                 User item = (User) v.getTag();
+                navigateTo(item,context);
                 Log.d("USERENROLL",item.getName());
             };
 
@@ -114,7 +116,7 @@ public class EnrollempleadoFragment extends Fragment {
 
     private void getUsers(){
         FingerprintService fps = makeConfRequest().create(FingerprintService.class);
-        Call<List<User>> call = fps.getUsers(20);
+        Call<List<User>> call = fps.getUsers(100);
         call.enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
@@ -136,4 +138,12 @@ public class EnrollempleadoFragment extends Fragment {
             }
         });
     }
+
+    private void navigateTo(User item,Context context) {
+        Intent intent = new Intent(context, EnrollActivity.class);
+        intent.putExtra("INFOFP", item);
+        startActivity(intent);
+
+    }
+
 }

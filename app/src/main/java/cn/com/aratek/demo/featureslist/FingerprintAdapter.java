@@ -40,10 +40,9 @@ public class FingerprintAdapter extends RecyclerView.Adapter<FingerprintAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         User s = mData.get(position);
-
-        holder.textView.setText(s.getName());
-        holder.textView.setTag(s);
-
+        holder.textId.setText(String.valueOf(s.getId()) );
+        holder.textUsername.setText(s.getEmail());
+        holder.textUsername.setTag(s);
 
     }
 
@@ -53,12 +52,14 @@ public class FingerprintAdapter extends RecyclerView.Adapter<FingerprintAdapter.
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textView;
+        public TextView textUsername;
+        public TextView textId;
 
         public ViewHolder(View itemView,View.OnClickListener clickListenerFP) {
             super(itemView);
-            textView = itemView.findViewById(R.id.nameFP);
-            textView.setOnClickListener(clickListenerFP);
+            textId = itemView.findViewById(R.id.idFP);
+            textUsername = itemView.findViewById(R.id.nameFP);
+            textUsername.setOnClickListener(clickListenerFP);
 
         }
 
